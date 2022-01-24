@@ -49,7 +49,7 @@ function Title(props) {
 }
 
 export default function HomePage() {
-  const username = "peas";
+  const username = "arsmcosta";
 
   return (
     <>
@@ -59,9 +59,9 @@ export default function HomePage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: appConfig.theme.colors.primary[500],
-          backgroundImage:
-            "url(https://virtualbackgrounds.site/wp-content/uploads/2020/08/the-matrix-digital-rain.jpg)",
+          backgroundColor: appConfig.theme.colors.primary["yellow.950"],
+          // backgroundImage:
+          //   "url(https://virtualbackgrounds.site/wp-content/uploads/2020/08/the-matrix-digital-rain.jpg)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundBlendMode: "multiply",
@@ -115,7 +115,7 @@ export default function HomePage() {
                 neutral: {
                   textColor: appConfig.theme.colors.neutrals[200],
                   mainColor: appConfig.theme.colors.neutrals[900],
-                  mainColorHighlight: appConfig.theme.colors.primary[500],
+                  mainColorHighlight: appConfig.theme.colors.primary["yellow.950"],
                   backgroundColor: appConfig.theme.colors.neutrals[800],
                 },
               }}
@@ -125,10 +125,10 @@ export default function HomePage() {
               label="Entrar"
               fullWidth
               buttonColors={{
-                contrastColor: appConfig.theme.colors.neutrals["000"],
-                mainColor: appConfig.theme.colors.primary[500],
-                mainColorLight: appConfig.theme.colors.primary[400],
-                mainColorStrong: appConfig.theme.colors.primary[600],
+                contrastColor: appConfig.theme.colors.neutrals["900"],
+                mainColor: appConfig.theme.colors.primary["yellow.500"],
+                mainColorLight: appConfig.theme.colors.primary["gray"],
+                mainColorStrong: appConfig.theme.colors.primary["yellow.900"],
               }}
             />
           </Box>
