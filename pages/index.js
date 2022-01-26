@@ -1,5 +1,5 @@
 import { Box, Button, Text, TextField, Image } from "@skynexui/components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import appConfig from "../config.json";
 
@@ -20,9 +20,17 @@ function Title(props) {
 }
 
 export default function HomePage() {
-  const [username, setUsername] = useState("alura");
+  const [username, setUsername] = useState("");
+  const [userName, setUserName] = useState("");
   const router = useRouter();
-
+  useEffect(() => {
+    fetch(`https://api.github.com/users/${username}`).then(async (response) => {
+      if(response.ok) {
+        const userData = await response.json();
+        setUserName(userData.name)
+      }
+    })
+  }, [username])
   return (
     <>
       <Box
@@ -61,7 +69,7 @@ export default function HomePage() {
             as="form"
             onSubmit={(event) => {
               event.preventDefault();
-              router.push('/chat')
+              router.push("/chat");
             }}
             styleSheet={{
               display: "flex",
@@ -129,24 +137,38 @@ export default function HomePage() {
               minHeight: "240px",
             }}
           >
-            <Image
-              styleSheet={{
-                borderRadius: "50%",
-                marginBottom: "16px",
-              }}
-              src={`https://github.com/${username}.png`}
-            />
-            <Text
-              variant="body4"
-              styleSheet={{
-                color: appConfig.theme.colors.neutrals[200],
-                backgroundColor: appConfig.theme.colors.neutrals[900],
-                padding: "3px 10px",
-                borderRadius: "1000px",
-              }}
-            >
-              {username}
-            </Text>
+            {username.length > 2 && userName != null ? (
+              <Image
+                styleSheet={{
+                  borderRadius: "50%",
+                  marginBottom: "16px",
+                }}
+                src={`https://github.com/${username}.png`}
+              />
+            ) : (
+              <Image
+                styleSheet={{
+                  borderRadius: "50%",
+                  marginBottom: "16px",
+                }}
+                src="https://www.designbolts.com/wp-content/uploads/2015/12/Missing-File-404-error-page-designs.jpg"
+              />
+            )}
+            {username.length > 2 ? (
+              <Text
+                variant="body4"
+                styleSheet={{
+                  color: appConfig.theme.colors.neutrals[200],
+                  backgroundColor: appConfig.theme.colors.neutrals[900],
+                  padding: "3px 10px",
+                  borderRadius: "1000px",
+                }}
+              >
+                {userName}
+              </Text>
+            ) : (
+              ""
+            )}
           </Box>
           {/* Photo Area */}
         </Box>
